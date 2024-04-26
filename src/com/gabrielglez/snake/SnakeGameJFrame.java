@@ -475,10 +475,10 @@ public class SnakeGameJFrame extends JFrame{
 		
 		for ( int i = 0 ; i < snakeBody.size() ; i++ ){
 			
-			if( snakeBody.get(i).getPositionY() == fruitY && 
-				snakeBody.get(i).getPositionX() == fruitX    )
-				
+			if( snakeBody.get(0).getPositionY() == fruitY && 
+				snakeBody.get(0).getPositionX() == fruitX){
 				return true;
+			}
 		}
 		
 		return false;
