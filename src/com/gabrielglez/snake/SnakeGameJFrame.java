@@ -24,6 +24,8 @@ public class SnakeGameJFrame extends JFrame{
 	private static final int MIN_X = 0;
 	private static final int MAX_X = 50; //22
 	
+        private int fruits = 5;
+        
 	private int y;
 	private int x;
 	
@@ -349,21 +351,14 @@ public class SnakeGameJFrame extends JFrame{
 	
 	public void loadFruits(){
 		
-		boolean positionFruitOK = true;
-		
-		do{
-			
-			int Y = (int) (Math.random() * 21);
-			int X = (int) (Math.random() * 21);
-	
-			if( isLocationFruitInSnakeBody(Y, X) == false ){
+		for(int i = 0 ; i < 5 ; i++){
+			int Y = (int) (Math.random() * MAX_Y);
+			int X = (int) (Math.random() * MAX_X);
+                        
+			if( ! isLocationFruitInSnakeBody(Y, X)){
 				buttons[Y][X].setBackground(Color.YELLOW);
-				positionFruitOK = false;
 			}
-		
-		}while(positionFruitOK == true);
-		
-		
+                }
 	}
 	
 	
@@ -425,7 +420,12 @@ public class SnakeGameJFrame extends JFrame{
 			fruitX = x;
 			points = points + 10;
 			pointJLabel.setText(String.valueOf(points));
-			loadFruits();
+                        fruits--;
+                        if(fruits == 0){
+                            loadFruits();
+                            fruits=5;
+                        }
+			
 			return true;
 		}
 		else{
